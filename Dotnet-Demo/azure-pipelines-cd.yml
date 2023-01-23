@@ -1,0 +1,22 @@
+pool:
+  name: App
+
+resources:
+ repositories:
+   - repository: pipeline-template
+     type: git
+     name: ArgoCD/pipeline-template
+   - repository: pipeline-template
+     type: git
+     name: ArgoCD/Dotnet-Demo
+ pipelines:  
+  - pipeline: cipipeline
+    source: 'Dotnet-Demo-CI'
+    trigger:
+      enabled: true       
+      branches:
+      - dev
+      - release/*
+
+extends:   
+  template: azure-pipeline-stage-template-cd.yaml@pipeline-template

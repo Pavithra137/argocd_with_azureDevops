@@ -1,0 +1,13 @@
+trigger: none
+
+pool:
+  name: App
+
+resources:
+ repositories:
+   - repository: pipeline-template
+     type: git
+     name: ArgoCD/pipeline-template
+
+extends:   
+  template: azure-pipeline-stage-template.yaml@pipeline-template

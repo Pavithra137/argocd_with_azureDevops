@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-deployment
+  namespace: {{ .Values.deployment.namespace }}
+  labels:
+    app: dotnet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dotnet
+  template:
+    metadata:
+      labels:
+        app: dotnet
+    spec:
+      containers:
+      - name: dotnet
+        image: 537160833337.dkr.ecr.us-east-1.amazonaws.com/dotnet:{{ .Values.deployment.imagetag }}
+        ports:
+        - containerPort: 80
